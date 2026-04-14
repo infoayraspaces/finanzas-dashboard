@@ -1,11 +1,20 @@
 export const CUENTAS = ['Bancolombia', 'Nequi', 'TC Visa', 'TC Nubank', 'Cardiff', 'Davivienda', 'Efectivo']
 
-export const CATEGORIES = [
+export const EXPENSE_CATEGORIES = [
   'Comida', 'Transporte', 'Gym', 'Servicios públicos', 'Arriendo',
   'Farras', 'Barbería', 'Netflix', 'Celular', 'Icloud', 'Google',
   'Soccer', 'Compras mías', 'Personal brand', 'Diseño de sonrisa',
-  'Casa Modelia', 'Criptos', 'AYRA', 'Otros',
+  'Casa Modelia', 'Criptos', 'AYRA',
+  'Parafiscales', 'Apto', 'Viaje', 'Mensualidad ma', 'Gasolina', 'Educación', 'Cuota de manejo',
+  'Otros',
 ]
+
+export const INCOME_CATEGORIES = [
+  'Admon Koti', 'Criptos', 'Koti inversión', 'Admon La Nevera',
+  'La Nevera inversión', 'Otros ingresos',
+]
+
+export const CATEGORIES = [...new Set([...EXPENSE_CATEGORIES, ...INCOME_CATEGORIES])]
 
 export const CATEGORY_COLORS = {
   'Comida': '#f59e0b',
@@ -26,6 +35,18 @@ export const CATEGORY_COLORS = {
   'Casa Modelia': '#34d399',
   'Criptos': '#fbbf24',
   'AYRA': '#f87171',
+  'Parafiscales': '#a78bfa',
+  'Apto': '#38bdf8',
+  'Viaje': '#4ade80',
+  'Mensualidad ma': '#fb7185',
+  'Gasolina': '#fdba74',
+  'Educación': '#67e8f9',
+  'Cuota de manejo': '#d1d5db',
+  'Admon Koti': '#86efac',
+  'Koti inversión': '#6ee7b7',
+  'Admon La Nevera': '#93c5fd',
+  'La Nevera inversión': '#60a5fa',
+  'Otros ingresos': '#a3e635',
   'Otros': '#9ca3af',
 }
 
@@ -49,6 +70,13 @@ export const PRESUPUESTO = {
   'Casa Modelia': 0,
   'Criptos': 0,
   'AYRA': 0,
+  'Parafiscales': 0,
+  'Apto': 0,
+  'Viaje': 0,
+  'Mensualidad ma': 0,
+  'Gasolina': 150000,
+  'Educación': 0,
+  'Cuota de manejo': 0,
   'Otros': 100000,
 }
 

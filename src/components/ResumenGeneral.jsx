@@ -1,5 +1,25 @@
 import { formatCOP, formatCOPFull } from '../utils/formatters'
 
+function MetaRow({ label, meta, neto }) {
+  const ok = neto >= meta
+  return (
+    <div className={`flex items-center justify-between rounded-xl px-3 py-2.5 ${ok ? 'bg-green-900/30' : 'bg-red-900/30'}`}>
+      <div>
+        <p className="text-sm text-gray-200">{label}</p>
+        <p className={`text-xs mt-0.5 ${ok ? 'text-green-400' : 'text-red-400'}`}>
+          {ok ? '✓ Disponible' : '✗ Insuficiente'}
+        </p>
+      </div>
+      <div className="text-right">
+        <p className={`text-base font-bold ${ok ? 'text-green-400' : 'text-red-400'}`}>
+          {formatCOP(meta)}
+        </p>
+        <p className="text-xs text-gray-500">{formatCOPFull(meta)}</p>
+      </div>
+    </div>
+  )
+}
+
 function StatCard({ label, value, color, sub }) {
   return (
     <div className="bg-gray-800 rounded-2xl p-4">
@@ -20,6 +40,9 @@ export default function ResumenGeneral({ transactions }) {
   const totalInversiones = inversiones.reduce((s, t) => s + Math.abs(t.monto), 0)
   const neto = totalIngresos + totalGastos
 
+  const ahorro10 = totalIngresos * 0.10
+  const fondo5 = totalIngresos * 0.05
+
   const recent = [...transactions]
     .sort((a, b) => (b.fechaObj?.getTime() || 0) - (a.fechaObj?.getTime() || 0))
     .slice(0, 10)
@@ -32,6 +55,24 @@ export default function ResumenGeneral({ transactions }) {
         <StatCard label="Saldo neto" value={neto} color={neto >= 0 ? 'text-blue-400' : 'text-orange-400'} />
         <StatCard label="Inversiones" value={totalInversiones} color="text-purple-400" sub={`${inversiones.length} mov.`} />
       </div>
+
+      {totalIngresos > 0 && (
+        <div className="bg-gray-800 rounded-2xl p-4">
+          <h3 className="text-sm font-semibold text-gray-300 mb-3">Metas del mes</h3>
+          <div className="space-y-3">
+            <MetaRow
+              label="Ahorro sugerido (10%)"
+              meta={ahorro10}
+              neto={neto}
+            />
+            <MetaRow
+              label="Fondo otros (5%)"
+              meta={fondo5}
+              neto={neto - ahorro10}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="bg-gray-800 rounded-2xl p-4">
         <h3 className="text-sm font-semibold text-gray-300 mb-3">Últimas transacciones</h3>
