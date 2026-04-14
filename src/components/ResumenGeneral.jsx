@@ -31,9 +31,9 @@ function StatCard({ label, value, color, sub }) {
 }
 
 export default function ResumenGeneral({ transactions }) {
-  const gastos = transactions.filter(t => t.monto < 0 && !t.es_inversion)
-  const ingresos = transactions.filter(t => t.monto > 0)
-  const inversiones = transactions.filter(t => t.es_inversion)
+  const gastos = transactions.filter(t => t.tipo === 'gasto')
+  const ingresos = transactions.filter(t => t.tipo === 'ingreso')
+  const inversiones = transactions.filter(t => t.tipo === 'inversion')
 
   const totalGastos = gastos.reduce((s, t) => s + t.monto, 0)
   const totalIngresos = ingresos.reduce((s, t) => s + t.monto, 0)

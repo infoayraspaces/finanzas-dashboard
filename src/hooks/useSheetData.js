@@ -20,11 +20,14 @@ function parseTransactions(rows) {
       const obj = {}
       header.forEach((col, i) => { obj[col] = row[i] || '' })
       const monto = parseFloat(String(obj.monto || '0').replace(/[^0-9.-]/g, '')) || 0
+      const es_inversion = obj.es_inversion === 'true' || obj.es_inversion === true
+      const tipo = obj.tipo || (es_inversion ? 'inversion' : monto > 0 ? 'ingreso' : 'gasto')
       return {
         ...obj,
         monto,
         fechaObj: parseDate(obj.fecha),
-        es_inversion: obj.es_inversion === 'true' || obj.es_inversion === true,
+        es_inversion,
+        tipo,
       }
     })
     .filter(t => t.fechaObj !== null)

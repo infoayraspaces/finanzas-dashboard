@@ -2,7 +2,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recha
 import { formatCOP, formatCOPFull, CATEGORY_COLORS } from '../utils/formatters'
 
 export default function GastosPorCategoria({ transactions }) {
-  const gastos = transactions.filter(t => t.monto < 0 && !t.es_inversion)
+  const gastos = transactions.filter(t => t.tipo === 'gasto')
 
   const byCategory = {}
   gastos.forEach(t => {

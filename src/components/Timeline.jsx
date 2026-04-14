@@ -2,7 +2,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { formatCOP, formatCOPFull } from '../utils/formatters'
 
 export default function Timeline({ transactions }) {
-  const gastos = transactions.filter(t => t.monto < 0 && !t.es_inversion)
+  const gastos = transactions.filter(t => t.tipo === 'gasto')
 
   // Group by day
   const byDay = {}

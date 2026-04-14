@@ -10,7 +10,7 @@ function ProgressBar({ pct }) {
 }
 
 export default function VsPresupuesto({ transactions }) {
-  const gastos = transactions.filter(t => t.monto < 0 && !t.es_inversion)
+  const gastos = transactions.filter(t => t.tipo === 'gasto')
 
   const gastoPorCategoria = {}
   gastos.forEach(t => {
