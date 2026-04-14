@@ -1,4 +1,4 @@
-export const CUENTAS = ['Bancolombia', 'Nequi', 'TC Visa', 'TC Nubank', 'Cardiff', 'Davivienda', 'Efectivo']
+export const CUENTAS = ['Bancolombia', 'Nequi', 'TC Visa', 'TC Nubank', 'Nu', 'Davivienda', 'Efectivo']
 
 export const EXPENSE_CATEGORIES = [
   'Comida', 'Transporte', 'Gym', 'Servicios públicos', 'Arriendo',
